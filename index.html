@@ -13,15 +13,13 @@
     --teal: #3FD9CB;
     --teal-dim: rgba(63,217,203,0.15);
     --white: #F8F4F0;
-    --off: #EDE8E3;
+    --muted: rgba(248,244,240,0.45);
     --gray: #2A1218;
     --mid: #3D1A22;
-    --muted: rgba(248,244,240,0.45);
     --black: #0D0608;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -32,7 +30,7 @@
     cursor: none;
   }
 
-  /* ── CURSOR ── */
+  /* CURSOR */
   .cursor {
     width: 14px; height: 14px;
     background: var(--teal);
@@ -45,704 +43,319 @@
   }
   .cursor.big { transform: scale(3); background: var(--crimson); }
 
-  /* ── MARQUEE ── */
+  /* TICKER */
   .ticker {
     background: var(--crimson);
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 11px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    overflow: hidden; white-space: nowrap;
+    padding: 11px 0; position: sticky; top: 0; z-index: 100;
     border-bottom: 1px solid var(--crimson-light);
   }
-  .ticker-track {
-    display: inline-block;
-    animation: ticker 22s linear infinite;
-  }
+  .ticker-track { display: inline-block; animation: ticker 22s linear infinite; }
   .ticker-track span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--white);
-    letter-spacing: 0.12em;
-    padding: 0 36px;
-    opacity: 0.9;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: rgba(248,244,240,0.85); letter-spacing: 0.12em; padding: 0 36px;
   }
-  .ticker-track span.accent { color: var(--teal); font-weight: 700; }
-  @keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  .ticker-track span.acc { color: var(--teal); font-weight: 700; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 60px;
-    border-bottom: 1px solid var(--mid);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px; border-bottom: 1px solid var(--mid);
   }
-  .logo-svg { height: 36px; width: auto; }
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
+  .logo-svg { height: 34px; width: auto; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    cursor: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.2s; cursor: none;
   }
   .nav-links a:hover { color: var(--teal); }
-  .nav-cta {
-    background: var(--teal);
-    color: var(--black) !important;
-    padding: 8px 20px !important;
-    font-weight: 700 !important;
-    opacity: 1 !important;
-  }
+  .nav-cta { background: var(--teal) !important; color: var(--black) !important; padding: 8px 20px !important; font-weight: 700 !important; opacity: 1 !important; }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: calc(100vh - 120px);
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-    padding: 80px 60px;
-    gap: 80px;
-    position: relative;
-    border-bottom: 1px solid var(--mid);
-    overflow: hidden;
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    align-items: center; padding: 80px 60px; gap: 80px;
+    position: relative; border-bottom: 1px solid var(--mid); overflow: hidden;
   }
-
-  /* Background texture */
   .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 60% 60% at 80% 40%, rgba(157,3,50,0.18) 0%, transparent 70%),
       radial-gradient(ellipse 40% 40% at 10% 80%, rgba(63,217,203,0.06) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  /* Grain overlay */
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.4;
-    pointer-events: none;
-  }
-
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp 0.6s 0.2s forwards;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+    display: flex; align-items: center; gap: 12px;
   }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--teal);
-  }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--teal); }
 
   .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(58px, 6.5vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.35s forwards;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(58px, 6.5vw, 96px); line-height: 0.95;
+    letter-spacing: -0.03em; margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
   }
-  .hero-title .line-teal { color: var(--teal); }
-  .hero-title .line-outline {
-    -webkit-text-stroke: 1.5px rgba(248,244,240,0.35);
-    color: transparent;
-  }
+  .hero-title .teal { color: var(--teal); }
+  .hero-title .outline { -webkit-text-stroke: 1.5px rgba(248,244,240,0.35); color: transparent; }
 
   .hero-sub {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--muted);
-    max-width: 460px;
-    margin-bottom: 44px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.5s forwards;
+    font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 460px; margin-bottom: 44px;
+    opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
   }
   .hero-sub strong { color: var(--white); }
 
-  .hero-btns {
-    display: flex;
-    gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.65s forwards;
+  .hero-btns { display: flex; gap: 16px; opacity: 0; animation: fadeUp 0.7s 0.65s forwards; }
+  .btn-p {
+    display: inline-flex; align-items: center; gap: 10px; background: var(--crimson); color: var(--white);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    padding: 15px 32px; text-decoration: none; border: 1px solid var(--crimson-light);
+    cursor: none; letter-spacing: 0.05em; transition: transform 0.2s, background 0.2s;
   }
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--crimson);
-    color: var(--white);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 15px 32px;
-    text-decoration: none;
-    border: 1px solid var(--crimson-light);
-    cursor: none;
-    letter-spacing: 0.05em;
-    transition: transform 0.2s, background 0.2s;
+  .btn-p:hover { transform: translate(-3px,-3px); background: var(--crimson-light); }
+  .btn-g {
+    display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    padding: 15px 32px; text-decoration: none; border: 1px solid var(--mid);
+    cursor: none; letter-spacing: 0.05em; transition: border-color 0.2s, color 0.2s;
   }
-  .btn-primary:hover { transform: translate(-3px,-3px); background: var(--crimson-light); }
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: transparent;
-    color: var(--white);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    padding: 15px 32px;
-    text-decoration: none;
-    border: 1px solid var(--mid);
-    cursor: none;
-    letter-spacing: 0.05em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+  .btn-g:hover { border-color: var(--teal); color: var(--teal); }
 
-  /* Hero right — meme card */
-  .hero-right {
-    opacity: 0;
-    animation: fadeLeft 0.9s 0.5s forwards;
-    position: relative;
-    z-index: 1;
-  }
+  /* MEME CARD */
+  .hero-right { opacity: 0; animation: fadeLeft 0.9s 0.5s forwards; position: relative; z-index: 1; }
   .meme-card {
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    padding: 0;
-    overflow: hidden;
-    transform: rotate(1.5deg);
-    transition: transform 0.4s;
+    background: var(--gray); border: 1px solid var(--mid); overflow: hidden;
+    transform: rotate(1.5deg); transition: transform 0.4s;
     box-shadow: 0 32px 80px rgba(0,0,0,0.5);
   }
   .meme-card:hover { transform: rotate(0deg) scale(1.02); }
-  .meme-topbar {
-    background: var(--mid);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .meme-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .meme-dot:nth-child(1) { background: #FF5F57; }
-  .meme-dot:nth-child(2) { background: #FEBC2E; }
-  .meme-dot:nth-child(3) { background: #28C840; }
-  .meme-topbar span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    margin-left: auto;
-    letter-spacing: 0.1em;
-  }
-  .meme-body {
-    padding: 32px;
-  }
-  .meme-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    letter-spacing: 0.15em;
-    margin-bottom: 20px;
-  }
-  .meme-compare {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .meme-row-item {
-    padding: 20px;
-    border: 1px solid var(--mid);
-  }
-  .meme-row-item + .meme-row-item { border-top: none; }
-  .meme-row-item .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    display: block;
-  }
-  .meme-row-item .content {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  .meme-row-item.theirs .content { color: var(--muted); }
-  .meme-row-item.ours { border-color: var(--crimson); background: rgba(157,3,50,0.1); }
-  .meme-row-item.ours .content { color: var(--teal); }
-  .meme-row-item .emoji { font-size: 28px; display: block; margin-bottom: 6px; }
+  .meme-topbar { background: var(--mid); padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot:nth-child(1) { background: #FF5F57; } .dot:nth-child(2) { background: #FEBC2E; } .dot:nth-child(3) { background: #28C840; }
+  .meme-topbar span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; letter-spacing: 0.1em; }
+  .meme-body { padding: 32px; }
+  .meme-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.15em; margin-bottom: 20px; }
+  .meme-cmp { display: flex; flex-direction: column; }
+  .mc { padding: 20px; border: 1px solid var(--mid); }
+  .mc + .mc { border-top: none; }
+  .mc .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 10px; display: block; }
+  .mc .ct { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
+  .mc.theirs .ct { color: var(--muted); }
+  .mc.ours { border-color: var(--crimson); background: rgba(157,3,50,0.1); }
+  .mc.ours .ct { color: var(--teal); }
+  .mc .em { font-size: 28px; display: block; margin-bottom: 6px; }
 
-  /* ── SECTION WRAPPER ── */
-  .section {
-    padding: 100px 60px;
-    border-bottom: 1px solid var(--mid);
+  /* SECTIONS */
+  .section { padding: 100px 60px; border-bottom: 1px solid var(--mid); }
+  .sec-label { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; }
+  .sec-label .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal);
+    letter-spacing: 0.2em; border: 1px solid var(--teal-dim); padding: 4px 10px;
   }
+  .sec-label h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(32px, 3.5vw, 48px); letter-spacing: -0.02em; line-height: 1;
+  }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--mid); }
 
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 56px;
-  }
-  .section-label .num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    border: 1px solid var(--teal-dim);
-    padding: 4px 10px;
-  }
-  .section-label h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(32px, 3.5vw, 48px);
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--mid);
-  }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
-    align-items: start;
-  }
-  .about-text p {
-    font-size: 15px;
-    line-height: 1.85;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .about-text p { font-size: 15px; line-height: 1.85; color: var(--muted); margin-bottom: 20px; }
   .about-text p strong { color: var(--white); }
-  .about-text .tag-pill {
-    display: inline-block;
-    background: rgba(157,3,50,0.2);
-    border: 1px solid var(--crimson);
-    color: var(--teal);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    padding: 5px 14px;
-    letter-spacing: 0.1em;
-    margin-top: 8px;
+  .pill {
+    display: inline-block; background: rgba(157,3,50,0.2); border: 1px solid var(--crimson);
+    color: var(--teal); font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; padding: 5px 14px; letter-spacing: 0.1em; margin-top: 8px;
   }
-
-  .stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .stat-box {
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    padding: 36px 28px;
-    transition: border-color 0.25s;
+    background: var(--gray); border: 1px solid var(--mid);
+    padding: 36px 28px; transition: border-color 0.25s;
   }
   .stat-box:hover { border-color: var(--crimson); }
   .stat-box .big {
-    font-family: 'Syne', sans-serif;
-    font-size: 52px;
-    font-weight: 800;
-    color: var(--teal);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -0.03em;
+    font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800;
+    color: var(--teal); line-height: 1; margin-bottom: 8px; letter-spacing: -0.03em;
   }
-  .stat-box p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
+  .stat-box p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
 
-  /* ── ROLES ── */
+  /* ROLES */
   .role-list { display: flex; flex-direction: column; gap: 2px; }
   .role-item {
-    display: grid;
-    grid-template-columns: 64px 1fr auto;
-    align-items: center;
-    padding: 28px 36px;
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    gap: 28px;
-    transition: background 0.2s, border-color 0.2s;
-    cursor: none;
-    text-decoration: none;
-    color: inherit;
+    display: grid; grid-template-columns: 64px 1fr auto;
+    align-items: start; padding: 32px 36px;
+    background: var(--gray); border: 1px solid var(--mid);
+    gap: 28px; transition: background 0.2s, border-color 0.2s; cursor: none;
   }
   .role-item:hover { background: var(--mid); border-color: var(--crimson); }
-  .role-item:hover .arrow { transform: translateX(6px); color: var(--teal); }
-  .role-emoji { font-size: 26px; }
-  .role-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    margin-bottom: 5px;
-  }
-  .role-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
-  }
-  .role-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .role-tag {
-    background: var(--black);
-    border: 1px solid var(--mid);
-    color: var(--muted);
-    font-size: 10px;
-    padding: 3px 10px;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.05em;
-  }
-  .role-tag.salary { border-color: var(--crimson); color: var(--teal); }
-  .arrow {
-    font-size: 22px;
-    color: #444;
-    transition: transform 0.2s, color 0.2s;
-  }
+  .role-item:hover .arr { transform: translateX(6px); color: var(--teal); }
+  .r-emoji { font-size: 26px; padding-top: 4px; }
+  .r-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+  .r-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+  .r-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+  .arr { font-size: 22px; color: #444; transition: transform 0.2s, color 0.2s; padding-top: 4px; }
 
-  /* ── MEMES ── */
-  .meme-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .meme-tile {
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-  }
+  /* MEMES */
+  .meme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .meme-tile { background: var(--gray); border: 1px solid var(--mid); overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
   .meme-tile:hover { transform: translateY(-6px); border-color: var(--teal); }
   .meme-tile:nth-child(2) { margin-top: 28px; }
   .meme-tile:nth-child(3) { margin-top: -14px; }
   .meme-screen {
-    background: var(--black);
-    border-bottom: 1px solid var(--mid);
-    padding: 28px 24px;
-    text-align: center;
-    min-height: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    background: var(--black); border-bottom: 1px solid var(--mid);
+    padding: 28px 24px; text-align: center; min-height: 160px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
   }
-  .meme-screen .setup {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-  }
-  .meme-screen .punchline {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--teal);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .meme-screen .big-emoji { font-size: 36px; line-height: 1; }
-  .meme-footer {
-    padding: 14px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
+  .meme-screen .setup { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .meme-screen .punch { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--teal); line-height: 1.2; }
+  .meme-screen .em { font-size: 36px; line-height: 1; }
+  .meme-ft { padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
 
-  /* ── PERKS ── */
-  .perks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
+  /* PERKS */
+  .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .perk {
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    padding: 40px 32px;
-    transition: background 0.2s, border-color 0.2s;
-    position: relative;
-    overflow: hidden;
+    background: var(--gray); border: 1px solid var(--mid);
+    padding: 40px 32px; transition: background 0.2s;
+    position: relative; overflow: hidden;
   }
   .perk::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--crimson);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--crimson); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
   }
   .perk:hover { background: var(--mid); }
   .perk:hover::before { transform: scaleX(1); }
   .perk-icon { font-size: 32px; margin-bottom: 18px; display: block; }
-  .perk h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-  }
-  .perk p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .perk .vibe {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    margin-top: 14px;
-    letter-spacing: 0.1em;
-    opacity: 0.8;
-  }
+  .perk h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+  .perk p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .perk .vibe { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); margin-top: 14px; letter-spacing: 0.1em; }
 
-  /* ── APPLY ── */
+  /* APPLY */
   .apply-section {
-    padding: 120px 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
+    padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: start; position: relative; overflow: hidden;
   }
   .apply-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 50% 70% at 0% 50%, rgba(157,3,50,0.12) 0%, transparent 60%);
     pointer-events: none;
   }
-  .apply-left { position: relative; }
   .apply-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
   }
   .apply-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
   .apply-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(48px, 5vw, 72px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 28px;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(48px, 5vw, 72px); line-height: 0.95;
+    letter-spacing: -0.03em; margin-bottom: 28px;
   }
   .apply-title .hl { color: var(--teal); }
   .apply-title .cr { color: var(--crimson-light); }
-  .apply-desc {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 36px;
-    max-width: 380px;
+  .apply-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 36px; max-width: 380px; }
+  .promises { display: flex; flex-direction: column; gap: 12px; }
+  .promise {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
   }
-  .apply-promises {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .promise-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.04em;
-  }
-  .promise-item::before {
-    content: '✓';
-    color: var(--teal);
-    font-size: 14px;
-    flex-shrink: 0;
-  }
+  .promise::before { content: '✓'; color: var(--teal); font-size: 14px; flex-shrink: 0; }
 
-  /* Form */
-  .apply-form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: relative;
-  }
+  /* FORM */
+  .apply-form { display: flex; flex-direction: column; gap: 14px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
   }
-  .apply-form input,
-  .apply-form select,
-  .apply-form textarea {
-    background: var(--gray);
-    border: 1px solid var(--mid);
-    color: var(--white);
-    font-family: 'Instrument Sans', sans-serif;
-    font-size: 14px;
-    padding: 14px 18px;
-    outline: none;
-    width: 100%;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: none;
-    -webkit-appearance: none;
+  .apply-form input, .apply-form select, .apply-form textarea {
+    background: var(--gray); border: 1px solid var(--mid); color: var(--white);
+    font-family: 'Instrument Sans', sans-serif; font-size: 14px; padding: 14px 18px;
+    outline: none; width: 100%; transition: border-color 0.2s, background 0.2s;
+    cursor: none; -webkit-appearance: none;
   }
-  .apply-form input::placeholder,
-  .apply-form textarea::placeholder { color: rgba(248,244,240,0.2); }
-  .apply-form input:focus,
-  .apply-form select:focus,
-  .apply-form textarea:focus {
-    border-color: var(--teal);
-    background: var(--mid);
-  }
-  .apply-form select { cursor: none; }
+  .apply-form input::placeholder, .apply-form textarea::placeholder { color: rgba(248,244,240,0.2); }
+  .apply-form input:focus, .apply-form select:focus, .apply-form textarea:focus { border-color: var(--teal); background: var(--mid); }
   .apply-form textarea { resize: none; height: 110px; }
+
+  /* File upload field */
+  .file-upload-wrapper { position: relative; }
+  .file-upload-wrapper input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: none; width: 100%; height: 100%;
+  }
+  .file-upload-display {
+    background: var(--gray); border: 1px dashed var(--mid); color: var(--muted);
+    font-family: 'Instrument Sans', sans-serif; font-size: 14px; padding: 14px 18px;
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .file-upload-wrapper:hover .file-upload-display { border-color: var(--teal); background: var(--mid); }
+  .file-upload-display.has-file { color: var(--white); border-style: solid; border-color: var(--teal); }
+  .file-upload-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    background: var(--crimson); color: var(--white); padding: 5px 12px;
+    border: none; letter-spacing: 0.08em; flex-shrink: 0;
+  }
+
+  /* Validation errors */
+  .field-error { border-color: #ff4466 !important; }
+  .error-msg {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: #ff4466; letter-spacing: 0.06em; margin-top: 4px; display: none;
+  }
+  .error-msg.show { display: block; }
+
   .submit-btn {
-    background: var(--crimson);
-    color: var(--white);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 18px 40px;
-    border: 1px solid var(--crimson-light);
-    cursor: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: transform 0.2s, background 0.2s;
-    width: 100%;
+    background: var(--crimson); color: var(--white);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    padding: 18px 40px; border: 1px solid var(--crimson-light);
+    cursor: none; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: transform 0.2s, background 0.2s, color 0.2s; width: 100%;
   }
   .submit-btn:hover { transform: translateY(-3px); background: var(--teal); color: var(--black); border-color: var(--teal); }
-  .form-note {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: rgba(248,244,240,0.25);
-    text-align: center;
-    letter-spacing: 0.06em;
-    line-height: 1.6;
-  }
+  .form-note { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(248,244,240,0.25); text-align: center; letter-spacing: 0.06em; line-height: 1.6; }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
-    padding: 36px 60px;
-    border-top: 1px solid var(--mid);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 40px;
+    padding: 36px 60px; border-top: 1px solid var(--mid);
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 40px;
   }
-  footer .f-logo { height: 28px; width: auto; }
-  footer .f-links {
-    display: flex;
-    gap: 28px;
-    justify-content: center;
+  .f-logo { height: 26px; width: auto; }
+  .f-links { display: flex; gap: 28px; justify-content: center; }
+  .f-links a {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; cursor: none;
   }
-  footer .f-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    transition: color 0.2s;
-    cursor: none;
-  }
-  footer .f-links a:hover { color: var(--teal); }
-  footer .f-email {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    letter-spacing: 0.06em;
-  }
+  .f-links a:hover { color: var(--teal); }
+  .f-email { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.06em; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeLeft {
-    from { opacity: 0; transform: translateX(28px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeLeft { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
 
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: var(--crimson); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
-    nav { padding: 20px 24px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
-    .hero-right { display: none; }
-    .section { padding: 64px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .meme-grid, .perks-grid { grid-template-columns: 1fr; }
-    .meme-tile { margin-top: 0 !important; }
+    nav { padding: 20px 24px; } .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 60px 24px; } .hero-right { display: none; }
+    .section { padding: 64px 24px; } .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .meme-grid, .perks-grid { grid-template-columns: 1fr; } .meme-tile { margin-top: 0 !important; }
     .apply-section { grid-template-columns: 1fr; padding: 64px 24px; gap: 48px; }
     .form-row { grid-template-columns: 1fr; }
-    .role-item { grid-template-columns: 48px 1fr; }
-    .arrow { display: none; }
-    footer { grid-template-columns: 1fr; text-align: center; }
-    footer .f-links { justify-content: center; flex-wrap: wrap; }
+    .role-item { grid-template-columns: 48px 1fr; } .arr { display: none; }
+    footer { grid-template-columns: 1fr; text-align: center; } .f-links { flex-wrap: wrap; justify-content: center; }
   }
 </style>
 </head>
@@ -753,28 +366,19 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span class="accent">WIR SUCHEN DICH</span>
-    <span>· BOCK AUF BAGGER UND BITS? ·</span>
-    <span class="accent">5D INSTITUT</span>
-    <span>· TECH TRIFFT BAUBRANCHE ·</span>
-    <span class="accent">EINSTIEG 2025</span>
-    <span>· NGL DAS IST REAL ·</span>
-    <span class="accent">REMOTE-FRIENDLY</span>
-    <span>· NO BULLSHIT JOBS ·</span>
-    <span class="accent">WIR SUCHEN DICH</span>
-    <span>· BOCK AUF BAGGER UND BITS? ·</span>
-    <span class="accent">5D INSTITUT</span>
-    <span>· TECH TRIFFT BAUBRANCHE ·</span>
-    <span class="accent">EINSTIEG 2025</span>
-    <span>· NGL DAS IST REAL ·</span>
-    <span class="accent">REMOTE-FRIENDLY</span>
-    <span>· NO BULLSHIT JOBS ·</span>
+    <span class="acc">WIR SUCHEN DICH</span><span> · BOCK AUF BAGGER UND BITS? · </span>
+    <span class="acc">5D INSTITUT</span><span> · TECH TRIFFT BAUBRANCHE · </span>
+    <span class="acc">WERKSTUDIUM 2026</span><span> · GIESSEN / REMOTE · </span>
+    <span class="acc">LERN. WACHS. BLEIB.</span><span> · FOR REAL · </span>
+    <span class="acc">WIR SUCHEN DICH</span><span> · BOCK AUF BAGGER UND BITS? · </span>
+    <span class="acc">5D INSTITUT</span><span> · TECH TRIFFT BAUBRANCHE · </span>
+    <span class="acc">WERKSTUDIUM 2026</span><span> · GIESSEN / REMOTE · </span>
+    <span class="acc">LERN. WACHS. BLEIB.</span><span> · FOR REAL · </span>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <!-- White SVG logo inline -->
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.01 56.52" fill="white">
     <path d="M33.68,39.58a8.46,8.46,0,0,1-.79,3.7,8.13,8.13,0,0,1-2.19,2.84A10.35,10.35,0,0,1,27.35,48a12.77,12.77,0,0,1-4.21.67,18.25,18.25,0,0,1-1.92-.11c-.66-.08-1.31-.17-1.94-.3s-1.23-.25-1.78-.4a9.55,9.55,0,0,1-1.44-.5l.56-2.52a18.68,18.68,0,0,0,3.07,1,16.14,16.14,0,0,0,3.45.37,8.19,8.19,0,0,0,5.41-1.7,5.69,5.69,0,0,0,2-4.61,6,6,0,0,0-.69-3,5.85,5.85,0,0,0-1.87-2,8.77,8.77,0,0,0-2.78-1.18,14.44,14.44,0,0,0-3.44-.39H17.54V17.3H32.66v2.49h-12V30.66h1.85a15.18,15.18,0,0,1,4.21.58,11.37,11.37,0,0,1,3.58,1.68,8.34,8.34,0,0,1,2.47,2.78,7.82,7.82,0,0,1,.93,3.88"/>
     <path d="M43.16,38.55V19.89h4.53a17.8,17.8,0,0,1,5.57.85,13.62,13.62,0,0,1,4.55,2.48,11.6,11.6,0,0,1,3.08,4A12.72,12.72,0,0,1,62,32.69a12.68,12.68,0,0,1-1.13,5.48c-.07.13-.13.26-.2.38h3.36a15.11,15.11,0,0,0,1.11-5.86,15,15,0,0,0-1.27-6.22,14.07,14.07,0,0,0-3.58-4.87,16.58,16.58,0,0,0-5.55-3.17,21.57,21.57,0,0,0-7.12-1.13H40V38.55Z"/>
@@ -788,56 +392,54 @@
     <polygon points="88.47 39.93 88.47 40.86 86.03 40.86 86.03 48.24 84.88 48.24 84.88 40.86 82.43 40.86 82.43 39.93 88.47 39.93"/>
     <path d="M81,8.31a7.61,7.61,0,0,0-5.18,2h2.06v1.89a4.79,4.79,0,1,1-.76.81V11.11h-2A7.61,7.61,0,1,0,81,8.31"/>
   </svg>
-
   <ul class="nav-links">
-    <li><a href="#about">Über uns</a></li>
+    <li><a href="#about">Uber uns</a></li>
     <li><a href="#roles">Stellen</a></li>
     <li><a href="#vibes">Vibes</a></li>
     <li><a href="#perks">Benefits</a></li>
-    <li><a href="#apply" class="nav-cta">Bewerben →</a></li>
+    <li><a href="#apply" class="nav-cta">Bewerben</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Stellenanzeige · Deutschland · 2025</div>
+  <div>
+    <div class="hero-eyebrow">Werkstudium 2026 - Giessen oder Remote</div>
     <h1 class="hero-title">
       BOCK AUF<br>
-      <span class="line-teal">ECHTEN</span><br>
-      <span class="line-outline">IMPACT</span><br>
+      <span class="teal">ECHTEN</span><br>
+      <span class="outline">IMPACT</span><br>
       JOBS?
     </h1>
     <p class="hero-sub">
-      Wir digitalisieren die Baubranche. Keine Sinnlos-Meetings, kein Boomer-Büro.
-      Nur du, dein Laptop und Projekte, die Deutschland tatsächlich voranbringen. <strong>Fr real.</strong>
+      Wir digitalisieren die Baubranche. Keine Sinnlos-Meetings, kein Boomer-Buro.
+      Nur du, dein Laptop und Projekte, die wirklich was bewegen.
+      <strong>Neben dem Studium. For real.</strong>
     </p>
     <div class="hero-btns">
-      <a href="#apply" class="btn-primary">Jetzt bewerben →</a>
-      <a href="#roles" class="btn-ghost">Stellen ansehen</a>
+      <a href="#apply" class="btn-p">Jetzt bewerben</a>
+      <a href="#roles" class="btn-g">Stellen ansehen</a>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="meme-card">
       <div class="meme-topbar">
-        <div class="meme-dot"></div>
-        <div class="meme-dot"></div>
-        <div class="meme-dot"></div>
-        <span>// MOOD CHECK.exe</span>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span>// WERKSTUDIUM CHECK.exe</span>
       </div>
       <div class="meme-body">
-        <div class="meme-label">INDUSTRY COMPARISON 2025</div>
-        <div class="meme-compare">
-          <div class="meme-row-item theirs">
-            <span class="tag">ANDERE CONSULTING FIRMS</span>
-            <span class="emoji">😴</span>
-            <div class="content">Excel-Sheets von 2009 aktualisieren</div>
+        <div class="meme-lbl">COMPARISON 2026</div>
+        <div class="meme-cmp">
+          <div class="mc theirs">
+            <span class="tag">TYPISCHES WERKSTUDIUM</span>
+            <span class="em">😴</span>
+            <div class="ct">Kaffee kochen und Ablage sortieren</div>
           </div>
-          <div class="meme-row-item ours">
+          <div class="mc ours">
             <span class="tag">5D INSTITUT</span>
-            <span class="emoji">🏗️💻🔥</span>
-            <div class="content">KI. BIM. Digitalisierung. Fr.</div>
+            <span class="em">🏗️💻🔥</span>
+            <div class="ct">Direkt integriert. Echte Aufgaben. Kein Leerlauf.</div>
           </div>
         </div>
       </div>
@@ -847,40 +449,43 @@
 
 <!-- ABOUT -->
 <section class="section" id="about">
-  <div class="section-label reveal">
+  <div class="sec-label reveal">
     <span class="num">01</span>
     <h2>Wer wir sind</h2>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
       <p>
-        <strong>5D Institut</strong> ist die Consulting-Firma, die der Baubranche endlich das 21. Jahrhundert erklärt.
-        Wir bauen keine Häuser – wir bauen die <strong>Software, Prozesse und Strategien</strong>, mit denen Bauunternehmen
-        aufhören, auf Papier zu planen.
+        <strong>5D Institut</strong> ist Vorreiter fur masgeschneiderte Losungen in der
+        <strong>Digitalisierung und Nachhaltigkeit im Bauwesen.</strong>
+        Wir verbinden Technologie, Beratung und Training - damit Bauunternehmen
+        aufhoren, auf Papier zu planen.
       </p>
       <p>
-        Klingt nerdy? <strong>Ist es auch.</strong> Klingt wichtig? Noch mehr.
-        Die Baubranche macht ~13% des deutschen BIPs aus – und läuft noch zu 60% auf Fax und Ordner.
-        Das ist unser Playground. <strong>Slay.</strong>
+        Ein Grosteil unseres Teams kommt direkt von der Uni - und viele sind auch geblieben.
+        Wir glauben, dass <strong>frische Perspektiven und echte Neugier</strong> mehr wert sind
+        als ein perfekter Lebenslauf. Deshalb suchen wir keine fertigen Experten,
+        sondern Menschen, die noch am Lernen sind und genau das ernst nehmen.
       </p>
       <p>
-        Wir sind ein <strong>remote-freundliches Team</strong> mit flachen Hierarchien.
-        Kein Dresscode. Keine Stechuhr. Aber sehr viel <strong>echte Verantwortung</strong> – ab Tag 1.
+        Ob im Semester oder in der Semesterpause - du entscheidest, wann es passt.
+        Wir bauen gern langfristige Beziehungen auf. Wenn der Vibe stimmt
+        und beide Seiten wollen? Dann freuen wir uns, wenn du bleibst.
       </p>
-      <span class="tag-pill">HIRING NOW · EINSTIEG AB SOFORT</span>
+      <span class="pill">WERKSTUDIUM - 20H/WOCHE - GIESSEN / REMOTE</span>
     </div>
-    <div class="stat-grid reveal reveal-delay-1">
+    <div class="stat-grid reveal d1">
       <div class="stat-box">
         <div class="big">5D°</div>
-        <p>Fünf Dimensionen.<br>Eine Mission.</p>
+        <p>Funf Dimensionen.<br>Eine Mission.</p>
       </div>
       <div class="stat-box">
-        <div class="big">3×</div>
-        <p>Wachstum<br>seit 2022</p>
+        <div class="big">25</div>
+        <p>Berater:innen<br>im Team</p>
       </div>
       <div class="stat-box">
-        <div class="big">100%</div>
-        <p>Remote-friendly.<br>Wirklich.</p>
+        <div class="big">THM</div>
+        <p>Eng verbunden mit<br>der Hochschule</p>
       </div>
       <div class="stat-box">
         <div class="big">0</div>
@@ -892,168 +497,141 @@
 
 <!-- ROLES -->
 <section class="section" id="roles">
-  <div class="section-label reveal">
+  <div class="sec-label reveal">
     <span class="num">02</span>
     <h2>Offene Stellen</h2>
   </div>
   <div class="role-list reveal">
-    <div class="role-item">
-      <span class="role-emoji">🤖</span>
+
+    <div class="role-item" onclick="applyFor('Technology')">
+      <span class="r-emoji">💻</span>
       <div>
-        <div class="role-title">Junior KI-Consultant (m/w/d)</div>
-        <div class="role-meta">BERLIN · REMOTE · VOLLZEIT</div>
-        <div class="role-tags">
-          <span class="role-tag">Python</span>
-          <span class="role-tag">LLMs</span>
-          <span class="role-tag">Bausoftware</span>
-          <span class="role-tag salary">ab 42.000 €</span>
+        <div class="r-title">Werkstudent:in - Technology</div>
+        <div class="r-desc">
+          Du bist technikaffin und hast Lust, Automatisierungen zu bauen, Schnittstellen zu entwickeln
+          und Softwarelosungen fur die Baubranche mitzugestalten. Vorkenntnisse in Scripting,
+          Programmierung oder BIM-Software sind ein Plus - Neugier zahlt mehr.
         </div>
+        <div class="r-meta">GIESSEN / HYBRID / REMOTE - 20H/WOCHE</div>
       </div>
-      <span class="arrow">→</span>
+      <span class="arr">→</span>
     </div>
-    <div class="role-item">
-      <span class="role-emoji">📊</span>
+
+    <div class="role-item" onclick="applyFor('Consulting')">
+      <span class="r-emoji">🏗️</span>
       <div>
-        <div class="role-title">Digital Strategy Analyst (m/w/d)</div>
-        <div class="role-meta">MÜNCHEN · HYBRID · VOLLZEIT</div>
-        <div class="role-tags">
-          <span class="role-tag">Data</span>
-          <span class="role-tag">Präsentation</span>
-          <span class="role-tag">Excel ≠ Gott</span>
-          <span class="role-tag salary">ab 40.000 €</span>
+        <div class="r-title">Werkstudent:in - Consulting</div>
+        <div class="r-desc">
+          Du verstehst BIM-Bauprozesse oder mochtest sie kennenlernen und hast Freude daran,
+          Bauunternehmen bei der Digitalisierung zu begleiten. Du arbeitest nah an echten Projekten
+          und bringst dein Studium direkt in die Praxis.
         </div>
+        <div class="r-meta">GIESSEN / HYBRID / REMOTE - 20H/WOCHE</div>
       </div>
-      <span class="arrow">→</span>
+      <span class="arr">→</span>
     </div>
-    <div class="role-item">
-      <span class="role-emoji">🏗️</span>
+
+    <div class="role-item" onclick="applyFor('Training')">
+      <span class="r-emoji">🎓</span>
       <div>
-        <div class="role-title">BIM-Prozessberater:in (m/w/d)</div>
-        <div class="role-meta">HAMBURG · REMOTE · VOLLZEIT</div>
-        <div class="role-tags">
-          <span class="role-tag">BIM</span>
-          <span class="role-tag">Revit</span>
-          <span class="role-tag">Lean</span>
-          <span class="role-tag salary">ab 44.000 €</span>
+        <div class="r-title">Werkstudent:in - Training</div>
+        <div class="r-desc">
+          Du magst es, Wissen aufzubereiten und weiterzugeben. Du unterstuzt die Entwicklung
+          von Schulungsunterlagen, Webinaren und Trainingsprogrammen rund um digitales Bauen -
+          und lernst dabei selbst eine Menge.
         </div>
+        <div class="r-meta">GIESSEN / HYBRID / REMOTE - 20H/WOCHE</div>
       </div>
-      <span class="arrow">→</span>
+      <span class="arr">→</span>
     </div>
-    <div class="role-item">
-      <span class="role-emoji">🎨</span>
-      <div>
-        <div class="role-title">UX/Product Designer – SaaS (m/w/d)</div>
-        <div class="role-meta">REMOTE · VOLLZEIT ODER WERKSTUDIUM</div>
-        <div class="role-tags">
-          <span class="role-tag">Figma</span>
-          <span class="role-tag">Research</span>
-          <span class="role-tag">B2B SaaS</span>
-          <span class="role-tag salary">ab 38.000 €</span>
-        </div>
-      </div>
-      <span class="arrow">→</span>
-    </div>
-    <div class="role-item">
-      <span class="role-emoji">⚡</span>
-      <div>
-        <div class="role-title">Werkstudent:in – Tech & Research</div>
-        <div class="role-meta">REMOTE · 15–20H/WOCHE</div>
-        <div class="role-tags">
-          <span class="role-tag">Recherche</span>
-          <span class="role-tag">Präsentation</span>
-          <span class="role-tag">Lernen erlaubt</span>
-          <span class="role-tag salary">16–20 €/h</span>
-        </div>
-      </div>
-      <span class="arrow">→</span>
-    </div>
+
   </div>
 </section>
 
-<!-- MEMES / VIBES -->
+<!-- VIBES -->
 <section class="section" id="vibes">
-  <div class="section-label reveal">
+  <div class="sec-label reveal">
     <span class="num">03</span>
-    <h2>Unsere Vibes (fr)</h2>
+    <h2>Unsere Vibes</h2>
   </div>
   <div class="meme-grid reveal">
     <div class="meme-tile">
       <div class="meme-screen">
-        <span class="setup">Wenn dein Chef fragt ob du am Wochenende Zeit hast</span>
-        <span class="big-emoji">🙅</span>
-        <span class="punchline">WORK-LIFE BALANCE IST KEIN VIBE CHECK</span>
+        <span class="setup">Wenn der Chef fragt ob du am Wochenende Zeit hast</span>
+        <span class="em">🙅</span>
+        <span class="punch">STUDIUM GEHT VOR. IMMER.</span>
       </div>
-      <div class="meme-footer">→ 38h-Woche. Keine Kompromisse.</div>
+      <div class="meme-ft">Wir planen um dich herum - nicht umgekehrt.</div>
     </div>
     <div class="meme-tile">
       <div class="meme-screen">
         <span class="setup">POV: Dein erster Tag bei uns</span>
-        <span class="big-emoji">😤</span>
-        <span class="punchline">ECHTE PROJEKTE. AB WOCHE 1. NGL.</span>
+        <span class="em">😤</span>
+        <span class="punch">DIREKT DABEI. ECHTE AUFGABEN. KEIN LEERLAUF.</span>
       </div>
-      <div class="meme-footer">→ Kein "Kaffee kochen"-Praktikum.</div>
+      <div class="meme-ft">Du wirst ab Tag 1 ins Team integriert.</div>
     </div>
     <div class="meme-tile">
       <div class="meme-screen">
         <span class="setup">Andere Firmen: "Wir sind wie eine Familie 🥰"</span>
-        <span class="big-emoji">🚩🚩🚩</span>
-        <span class="punchline">WIR: EIN TEAM. GEHALT PÜNKTLICH. URLAUB GENEHMIGT.</span>
+        <span class="em">🚩🚩🚩</span>
+        <span class="punch">WIR: EIN TEAM. ECHTE BEZIEHUNGEN. KEINE RED FLAGS.</span>
       </div>
-      <div class="meme-footer">→ Red flags? Nicht bei uns.</div>
+      <div class="meme-ft">Wenn der Vibe stimmt, bleibst du vielleicht einfach.</div>
     </div>
   </div>
 </section>
 
 <!-- PERKS -->
 <section class="section" id="perks">
-  <div class="section-label reveal">
+  <div class="sec-label reveal">
     <span class="num">04</span>
     <h2>Was du bekommst</h2>
   </div>
   <div class="perks-grid reveal">
     <div class="perk">
       <span class="perk-icon">🏡</span>
-      <h3>Remote-First</h3>
-      <p>Arbeit von wo du willst. Kein "Du musst 3× ins Büro"-BS. Optional: Coworking-Budget.</p>
+      <h3>Giessen oder Remote</h3>
+      <p>Unser Buro ist in Giessen. Du kannst von dort arbeiten, von zuhause oder hybrid. Du entscheidest, was fur dich funktioniert.</p>
+      <p class="vibe">// YOUR SCHEDULE, YOUR RULES</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">📅</span>
+      <h3>Flexibel rund ums Studium</h3>
+      <p>Semester, Semesterpause, Prufungsphase - wir finden gemeinsam einen Rhythmus. 20 Stunden pro Woche, wann sie passen.</p>
       <p class="vibe">// MAIN CHARACTER ENERGY</p>
     </div>
     <div class="perk">
-      <span class="perk-icon">📚</span>
-      <h3>Learning Budget</h3>
-      <p>1.500 €/Jahr für Kurse, Zertifikate, Konferenzen. Weil wir wollen, dass du besser wirst als wir.</p>
+      <span class="perk-icon">📈</span>
+      <h3>Echte Lernkurve</h3>
+      <p>Du arbeitest an echten Projekten, nicht an Simulationen. Was du hier lernst, kannst du sofort im Lebenslauf verankern.</p>
       <p class="vibe">// GLOW UP GUARANTEED</p>
     </div>
     <div class="perk">
-      <span class="perk-icon">🧠</span>
-      <h3>Mental Health First</h3>
-      <p>Zugang zu Therapieplätzen, Coaching und einer Kultur, wo "ich brauche eine Pause" okay ist.</p>
-      <p class="vibe">// IT'S GIVING SAFE SPACE</p>
+      <span class="perk-icon">💪</span>
+      <h3>EGYM Wellpass</h3>
+      <p>Zugang zu Hunderten von Sport- und Wellnessangeboten deutschlandweit. Bewegung gehort dazu.</p>
+      <p class="vibe">// MIND AND BODY</p>
     </div>
     <div class="perk">
-      <span class="perk-icon">💰</span>
-      <h3>Faires Gehalt</h3>
-      <p>Transparente Gehaltsbänder. Keine Gehalts-Detektiv-Spielchen. Wir zeigen dir was du verdienst.</p>
-      <p class="vibe">// PERIODT.</p>
+      <span class="perk-icon">🔗</span>
+      <h3>Horizontales Wachstum</h3>
+      <p>Keine starre Karriereleiter. Du entwickelst dich in die Richtung, die dich wirklich interessiert - breit und tief zugleich.</p>
+      <p class="vibe">// YOUR PATH, NOT OURS</p>
     </div>
     <div class="perk">
-      <span class="perk-icon">🚀</span>
-      <h3>Echte Karriere</h3>
-      <p>Klar definierte Senioritätsstufen. Du weißt immer wo du stehst und wie du aufsteigst. No vague vibes.</p>
-      <p class="vibe">// THE ERA OF CLARITY</p>
-    </div>
-    <div class="perk">
-      <span class="perk-icon">🎮</span>
+      <span class="perk-icon">🎉</span>
       <h3>Team-Events</h3>
-      <p>Quarterly Off-Sites die tatsächlich Spaß machen. Keine Pflicht-Grillpartys. Wir fragen vorher.</p>
-      <p class="vibe">// OPTIONAL. IMMER.</p>
+      <p>Zweimal im Jahr machen wir was zusammen - richtiges Off-Site, kein Pflicht-Grillen. Neue Gesichter sind immer willkommen.</p>
+      <p class="vibe">// OPTIONAL. ABER SCHON.</p>
     </div>
   </div>
 </section>
 
 <!-- APPLY -->
 <section class="apply-section" id="apply">
-  <div class="apply-left reveal">
-    <div class="apply-eyebrow">05 · Bewirb dich jetzt</div>
+  <div class="reveal">
+    <div class="apply-eyebrow">05 - Bewirb dich jetzt</div>
     <h2 class="apply-title">
       DEINE<br>
       <span class="hl">ERA</span><br>
@@ -1061,77 +639,96 @@
       <span class="cr">HIER.</span>
     </h2>
     <p class="apply-desc">
-      Kein Anschreiben nötig. Kein Suit. Nur du und drei Sätze warum du Bock hast.
+      Kein Anschreiben notig. Kein Suit. Nur du und ein paar Satze warum du Bock hast.
       <strong>We see you.</strong>
     </p>
-    <div class="apply-promises">
-      <div class="promise-item">Antwort innerhalb von 5 Werktagen</div>
-      <div class="promise-item">No ghosting. Versprochen.</div>
-      <div class="promise-item">Kein Assessment Center BS</div>
-      <div class="promise-item">Einstieg nach Abschluss möglich</div>
+    <div class="promises">
+      <div class="promise">Antwort innerhalb von 2 Wochen</div>
+      <div class="promise">Kein Ghosting. Versprochen.</div>
+      <div class="promise">Kein Assessment Center BS</div>
+      <div class="promise">Einstieg jederzeit moglich</div>
+      <div class="promise">Wenn es passt, bleibst du gern</div>
     </div>
   </div>
 
-  <div class="apply-form reveal reveal-delay-2">
+  <div class="apply-form reveal d2">
     <div class="form-row">
       <div class="form-group">
         <label>Vorname *</label>
-        <input type="text" placeholder="Ayla" />
+        <input id="f-vorname" type="text" placeholder="Max" />
+        <span class="error-msg" id="err-vorname">Pflichtfeld</span>
       </div>
       <div class="form-group">
         <label>Nachname *</label>
-        <input type="text" placeholder="Mustermann" />
+        <input id="f-nachname" type="text" placeholder="Mustermann" />
+        <span class="error-msg" id="err-nachname">Pflichtfeld</span>
       </div>
     </div>
     <div class="form-group">
       <label>E-Mail *</label>
-      <input type="email" placeholder="deine@mail.de" />
+      <input id="f-email" type="email" placeholder="deine@mail.de" />
+      <span class="error-msg" id="err-email">Bitte eine gultige E-Mail eingeben</span>
     </div>
     <div class="form-group">
-      <label>Stelle *</label>
-      <select>
-        <option value="" disabled selected>Welche Rolle interessiert dich?</option>
-        <option>🤖 Junior KI-Consultant</option>
-        <option>📊 Digital Strategy Analyst</option>
-        <option>🏗️ BIM-Prozessberater:in</option>
-        <option>🎨 UX/Product Designer</option>
-        <option>⚡ Werkstudent:in – Tech & Research</option>
-        <option>Überzeug mich selbst – Open Application</option>
+      <label>Studiengang und Hochschule *</label>
+      <input id="f-studium" type="text" placeholder="z.B. Bauingenieurwesen, THM Giessen" />
+      <span class="error-msg" id="err-studium">Pflichtfeld</span>
+    </div>
+    <div class="form-group">
+      <label>Bereich *</label>
+      <select id="role-select">
+        <option value="" disabled selected>Welcher Bereich interessiert dich?</option>
+        <option value="Technology">💻 Technology - Automatisierung und Software</option>
+        <option value="Consulting">🏗️ Consulting - BIM und Digitale Beratung</option>
+        <option value="Training">🎓 Training - Schulung und Wissenstransfer</option>
+        <option value="Offen">Uberzeug mich selbst - Open Application</option>
       </select>
+      <span class="error-msg" id="err-bereich">Bitte einen Bereich auswahlen</span>
     </div>
     <div class="form-group">
-      <label>Warum wir? (3 Sätze reichen. Fr.) *</label>
-      <textarea placeholder="Ich will die Baubranche mit KI disrupted haben und..."></textarea>
+      <label>Warum wir? (ein paar Satze reichen) *</label>
+      <textarea id="f-warum" placeholder="Was zieht dich zur Baubranche oder zu uns an..."></textarea>
+      <span class="error-msg" id="err-warum">Pflichtfeld</span>
+    </div>
+    <div class="form-group">
+      <label>Lebenslauf (PDF) *</label>
+      <div class="file-upload-wrapper">
+        <input type="file" id="f-cv" accept=".pdf" onchange="handleFileChange(this)" />
+        <div class="file-upload-display" id="cv-display">
+          <span id="cv-label">Datei auswahlen...</span>
+          <span class="file-upload-btn">PDF UPLOAD</span>
+        </div>
+      </div>
+      <span class="error-msg" id="err-cv">Bitte einen Lebenslauf hochladen (PDF)</span>
     </div>
     <div class="form-group">
       <label>LinkedIn / Portfolio / GitHub</label>
       <input type="url" placeholder="https://..." />
     </div>
-    <button type="button" class="submit-btn" onclick="handleSubmit(this)">
-      BEWERBEN → (dauert 2 Minuten)
+    <button type="button" class="submit-btn" id="submit-btn" onclick="handleSubmit(this)">
+      BEWERBEN - dauert 2 Minuten
     </button>
     <p class="form-note">
-      Deine Daten werden nur intern verwendet · Datenschutz · jobs@5d-institut.de
+      Deine Daten werden nur intern verwendet - Datenschutz - backoffice@5d-institut.de
     </p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.01 56.52" fill="white" opacity="0.5">
+  <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.01 56.52" fill="white" opacity="0.4">
     <path d="M33.68,39.58a8.46,8.46,0,0,1-.79,3.7,8.13,8.13,0,0,1-2.19,2.84A10.35,10.35,0,0,1,27.35,48a12.77,12.77,0,0,1-4.21.67,18.25,18.25,0,0,1-1.92-.11c-.66-.08-1.31-.17-1.94-.3s-1.23-.25-1.78-.4a9.55,9.55,0,0,1-1.44-.5l.56-2.52a18.68,18.68,0,0,0,3.07,1,16.14,16.14,0,0,0,3.45.37,8.19,8.19,0,0,0,5.41-1.7,5.69,5.69,0,0,0,2-4.61,6,6,0,0,0-.69-3,5.85,5.85,0,0,0-1.87-2,8.77,8.77,0,0,0-2.78-1.18,14.44,14.44,0,0,0-3.44-.39H17.54V17.3H32.66v2.49h-12V30.66h1.85a15.18,15.18,0,0,1,4.21.58,11.37,11.37,0,0,1,3.58,1.68,8.34,8.34,0,0,1,2.47,2.78,7.82,7.82,0,0,1,.93,3.88"/><path d="M43.16,38.55V19.89h4.53a17.8,17.8,0,0,1,5.57.85,13.62,13.62,0,0,1,4.55,2.48,11.6,11.6,0,0,1,3.08,4A12.72,12.72,0,0,1,62,32.69a12.68,12.68,0,0,1-1.13,5.48c-.07.13-.13.26-.2.38h3.36a15.11,15.11,0,0,0,1.11-5.86,15,15,0,0,0-1.27-6.22,14.07,14.07,0,0,0-3.58-4.87,16.58,16.58,0,0,0-5.55-3.17,21.57,21.57,0,0,0-7.12-1.13H40V38.55Z"/><rect x="39.99" y="39.93" width="1.15" height="8.31"/><polygon points="48.95 48.24 44.29 41.71 44.29 48.24 43.19 48.24 43.19 39.93 44.29 39.93 48.95 46.45 48.95 39.93 50.05 39.93 50.05 48.24 48.95 48.24"/><path d="M56.83,46.08a1.9,1.9,0,0,1-.23,1,2.25,2.25,0,0,1-.62.72,3,3,0,0,1-.92.47,4.26,4.26,0,0,1-1.15.16,5.85,5.85,0,0,1-1.23-.13,4.56,4.56,0,0,1-1.15-.37l.22-.91a5.81,5.81,0,0,0,1,.35,4.7,4.7,0,0,0,1.12.13,2.26,2.26,0,0,0,1.31-.34,1.14,1.14,0,0,0,.5-1,1.21,1.21,0,0,0-.15-.62,1.52,1.52,0,0,0-.39-.46,3,3,0,0,0-.58-.37l-.7-.34c-.29-.13-.56-.27-.82-.41a3.71,3.71,0,0,1-.69-.5,2.29,2.29,0,0,1-.48-.64A1.7,1.7,0,0,1,51.7,42a2.21,2.21,0,0,1,.2-1,1.9,1.9,0,0,1,.54-.68,2.37,2.37,0,0,1,.84-.42,4,4,0,0,1,1.07-.13,5.06,5.06,0,0,1,1.17.13,4.55,4.55,0,0,1,1,.37l-.21.91a4.42,4.42,0,0,0-.91-.35,4.13,4.13,0,0,0-1-.14c-1,0-1.51.39-1.51,1.17a1.27,1.27,0,0,0,.07.46,1.07,1.07,0,0,0,.25.36,2.19,2.19,0,0,0,.45.33l.68.35.85.43a4.7,4.7,0,0,1,.82.55,2.75,2.75,0,0,1,.62.74,1.89,1.89,0,0,1,.25,1"/><polygon points="63.61 39.93 63.61 40.86 61.16 40.86 61.16 48.24 60.02 48.24 60.02 40.86 57.57 40.86 57.57 39.93 63.61 39.93"/><rect x="64.95" y="39.93" width="1.15" height="8.31"/><polygon points="73.47 39.93 73.47 40.86 71.03 40.86 71.03 48.24 69.88 48.24 69.88 40.86 67.43 40.86 67.43 39.93 73.47 39.93"/><path d="M80.06,39.93h1.15v5.36A3.47,3.47,0,0,1,81,46.51a2.7,2.7,0,0,1-.63,1,2.84,2.84,0,0,1-1,.65,3.86,3.86,0,0,1-1.41.24,3.77,3.77,0,0,1-1.4-.24,2.7,2.7,0,0,1-1.64-1.64,3.27,3.27,0,0,1-.22-1.22V39.93h1.15v5.41a2.22,2.22,0,0,0,.53,1.53,2.44,2.44,0,0,0,3.16,0,2.22,2.22,0,0,0,.53-1.53Z"/><polygon points="88.47 39.93 88.47 40.86 86.03 40.86 86.03 48.24 84.88 48.24 84.88 40.86 82.43 40.86 82.43 39.93 88.47 39.93"/><path d="M81,8.31a7.61,7.61,0,0,0-5.18,2h2.06v1.89a4.79,4.79,0,1,1-.76.81V11.11h-2A7.61,7.61,0,1,0,81,8.31"/>
   </svg>
   <div class="f-links">
-    <a href="#">Impressum</a>
-    <a href="#">Datenschutz</a>
-    <a href="#">5d-institut.de</a>
-    <a href="#">LinkedIn</a>
+    <a href="https://5d-institut.de/impressum" target="_blank">Impressum</a>
+    <a href="https://5d-institut.de/datenschutz" target="_blank">Datenschutz</a>
+    <a href="https://5d-institut.de" target="_blank">5d-institut.de</a>
   </div>
-  <span class="f-email">jobs@5d-institut.de</span>
+  <span class="f-email">backoffice@5d-institut.de</span>
 </footer>
 
 <script>
-  // Custom cursor
+  // Cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = (e.clientX - 7) + 'px';
@@ -1148,9 +745,108 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Submit
+  // Click role -> scroll to apply + autofill dropdown
+  function applyFor(role) {
+    const sel = document.getElementById('role-select');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === role) { sel.selectedIndex = i; break; }
+    }
+    document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // File upload display
+  function handleFileChange(input) {
+    const display = document.getElementById('cv-display');
+    const label = document.getElementById('cv-label');
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      label.textContent = file.name;
+      display.classList.add('has-file');
+    } else {
+      label.textContent = 'Datei auswahlen...';
+      display.classList.remove('has-file');
+    }
+  }
+
+  // Validation helpers
+  function showError(fieldId, errId, show) {
+    const field = document.getElementById(fieldId);
+    const err = document.getElementById(errId);
+    if (show) {
+      field && field.classList.add('field-error');
+      err && err.classList.add('show');
+    } else {
+      field && field.classList.remove('field-error');
+      err && err.classList.remove('show');
+    }
+  }
+
+  // Form submission with validation
   function handleSubmit(btn) {
-    btn.textContent = '✅ Gesendet! Wir melden uns bald.';
+    let valid = true;
+
+    // Vorname
+    const vorname = document.getElementById('f-vorname').value.trim();
+    showError('f-vorname', 'err-vorname', !vorname);
+    if (!vorname) valid = false;
+
+    // Nachname
+    const nachname = document.getElementById('f-nachname').value.trim();
+    showError('f-nachname', 'err-nachname', !nachname);
+    if (!nachname) valid = false;
+
+    // Email
+    const email = document.getElementById('f-email').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    showError('f-email', 'err-email', !emailOk);
+    if (!emailOk) valid = false;
+
+    // Studiengang
+    const studium = document.getElementById('f-studium').value.trim();
+    showError('f-studium', 'err-studium', !studium);
+    if (!studium) valid = false;
+
+    // Bereich
+    const bereich = document.getElementById('role-select').value;
+    const bereichOk = bereich && bereich !== '';
+    showError('role-select', 'err-bereich', !bereichOk);
+    if (!bereichOk) valid = false;
+
+    // Warum wir
+    const warum = document.getElementById('f-warum').value.trim();
+    showError('f-warum', 'err-warum', !warum);
+    if (!warum) valid = false;
+
+    // CV PDF
+    const cvInput = document.getElementById('f-cv');
+    const cvOk = cvInput.files && cvInput.files.length > 0;
+    const cvDisplay = document.getElementById('cv-display');
+    const cvErr = document.getElementById('err-cv');
+    if (!cvOk) {
+      cvDisplay.style.borderColor = '#ff4466';
+      cvErr.classList.add('show');
+      valid = false;
+    } else {
+      cvDisplay.style.borderColor = '';
+      cvErr.classList.remove('show');
+    }
+
+    if (!valid) return;
+
+    // Build mailto link as fallback (real backend would use fetch/FormData)
+    const subject = encodeURIComponent('Bewerbung Werkstudium - ' + bereich + ' - ' + vorname + ' ' + nachname);
+    const body = encodeURIComponent(
+      'Vorname: ' + vorname + '\n' +
+      'Nachname: ' + nachname + '\n' +
+      'E-Mail: ' + email + '\n' +
+      'Studiengang/Hochschule: ' + studium + '\n' +
+      'Bereich: ' + bereich + '\n\n' +
+      'Warum 5D Institut:\n' + warum + '\n\n' +
+      '(Lebenslauf bitte als Anhang beifugen)'
+    );
+    window.location.href = 'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
+
+    btn.textContent = 'Gesendet! Wir melden uns innerhalb von 2 Wochen.';
     btn.style.background = '#3FD9CB';
     btn.style.color = '#0D0608';
     btn.style.borderColor = '#3FD9CB';

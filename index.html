@@ -884,48 +884,42 @@
     btn.disabled = true;
     icon.textContent = '⏳';
     label.textContent = 'Wird gesendet...';
+    btn.style.background = 'var(--mid)';
+    btn.style.borderColor = 'var(--mid)';
 
-    try {
-      // Send as multipart/form-data so n8n receives the PDF as binary
-      const formData = new FormData();
-      formData.append('vorname',  vorname);
-      formData.append('nachname', nachname);
-      formData.append('email',    email);
-      formData.append('studium',  studium);
-      formData.append('bereich',  bereich);
-      formData.append('warum',    warum);
-      formData.append('linkedin', linkedin);
-      formData.append('cv',       cvFile, cvFile.name);
+    const formData = new FormData();
+    formData.append('vorname',  vorname);
+    formData.append('nachname', nachname);
+    formData.append('email',    email);
+    formData.append('studium',  studium);
+    formData.append('bereich',  bereich);
+    formData.append('warum',    warum);
+    formData.append('linkedin', linkedin);
+    formData.append('cv',       cvFile, cvFile.name);
 
-      const res = await fetch(WEBHOOK, {
-        method: 'POST',
-        body: formData
-        // No Content-Type header — browser sets it automatically with boundary
-      });
-
-      if (res.ok) {
+    fetch(WEBHOOK, { method: 'POST', body: formData })
+      .then(function() {
         icon.textContent = '✓';
         label.textContent = 'Bewerbung abgeschickt!';
         btn.style.background = 'var(--teal)';
         btn.style.color = 'var(--black)';
         btn.style.borderColor = 'var(--teal)';
         document.getElementById('form-note').textContent = 'Wir melden uns innerhalb von 2 Wochen. Versprochen.';
-      } else {
-        throw new Error('Server error ' + res.status);
-      }
-    } catch (err) {
-      icon.textContent = '✕';
-      label.textContent = 'Fehler – bitte versuch es nochmal';
-      btn.style.background = '#ff4466';
-      btn.style.borderColor = '#ff4466';
-      setTimeout(() => {
-        icon.textContent = '✉';
-        label.textContent = 'Jetzt bewerben';
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.disabled = false;
-      }, 3000);
-    }
+      })
+      .catch(function() {
+        icon.textContent = '✕';
+        label.textContent = 'Fehler – bitte versuch es nochmal';
+        btn.style.background = '#ff4466';
+        btn.style.borderColor = '#ff4466';
+        setTimeout(function() {
+          icon.textContent = '✉';
+          label.textContent = 'Jetzt bewerben';
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+          btn.disabled = false;
+        }, 3000);
+      });
   }
 </script>
 </body>

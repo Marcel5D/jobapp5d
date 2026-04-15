@@ -98,8 +98,8 @@
 
   .hero-title {
     font-family: 'Outfit', sans-serif; font-weight: 800;
-    font-size: clamp(58px, 6.5vw, 96px); line-height: 0.95;
-    letter-spacing: -0.03em; margin-bottom: 36px;
+    font-size: clamp(44px, 5vw, 78px); line-height: 0.93;
+    letter-spacing: -0.06em; margin-bottom: 36px; transform: scaleX(0.93); transform-origin: left;
     opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
   }
   .hero-title .teal { color: var(--teal); }
@@ -160,7 +160,7 @@
   }
   .sec-label h2 {
     font-family: 'Outfit', sans-serif; font-weight: 800;
-    font-size: clamp(32px, 3.5vw, 48px); letter-spacing: -0.02em; line-height: 1;
+    font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.04em; line-height: 1;
   }
   .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--mid); }
 
@@ -259,8 +259,8 @@
   .apply-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
   .apply-title {
     font-family: 'Outfit', sans-serif; font-weight: 800;
-    font-size: clamp(48px, 5vw, 72px); line-height: 0.95;
-    letter-spacing: -0.03em; margin-bottom: 28px;
+    font-size: clamp(40px, 4.2vw, 62px); line-height: 0.93;
+    letter-spacing: -0.06em; margin-bottom: 28px; transform: scaleX(0.93); transform-origin: left;
   }
   .apply-title .hl { color: var(--teal); }
   .apply-title .cr { color: var(--crimson-light); }
@@ -324,6 +324,55 @@
   .cta-footnote {
     font-family: 'DM Mono', monospace; font-size: 10px;
     color: rgba(248,244,240,0.2); text-align: center; letter-spacing: 0.06em; line-height: 1.6;
+  }
+
+  /* FORM */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .apply-cta-box input,
+  .apply-cta-box select,
+  .apply-cta-box textarea {
+    background: var(--black); border: 1px solid var(--mid); color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 13px 16px;
+    outline: none; width: 100%; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .apply-cta-box input::placeholder,
+  .apply-cta-box textarea::placeholder { color: rgba(248,244,240,0.18); }
+  .apply-cta-box input:focus,
+  .apply-cta-box select:focus,
+  .apply-cta-box textarea:focus { border-color: var(--teal); }
+  .apply-cta-box textarea { resize: none; height: 100px; }
+  .apply-cta-box select { color: var(--white); cursor: none; }
+  .apply-cta-box select option { background: var(--gray); }
+  .field-error { border-color: #ff4466 !important; }
+  .error-msg {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: #ff4466; letter-spacing: 0.06em; display: none;
+  }
+  .error-msg.show { display: block; }
+  .apply-btn-main:disabled { opacity: 0.7; cursor: not-allowed; transform: none !important; }
+
+  .file-upload-wrapper { position: relative; }
+  .file-upload-wrapper input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 2;
+  }
+  .file-upload-display {
+    background: var(--black); border: 1px dashed var(--mid); color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 13px 16px;
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    transition: border-color 0.2s;
+  }
+  .file-upload-wrapper:hover .file-upload-display { border-color: var(--teal); }
+  .file-upload-display.has-file { color: var(--white); border-style: solid; border-color: var(--teal); }
+  .file-upload-btn {
+    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+    background: var(--crimson); color: var(--white); padding: 5px 12px;
+    letter-spacing: 0.08em; flex-shrink: 0; pointer-events: none;
   }
 
   /* FOOTER */
@@ -658,35 +707,76 @@
 
     <div class="reveal d2">
       <div class="apply-cta-box">
-        <div class="cta-instruction">
-          Ein Klick – und dein Mail-Client öffnet sich mit allem vorausgefüllt.
-          Füll die markierten Felder aus, häng deinen <strong>Lebenslauf als PDF</strong> an
-          und schick ab. Dauert 2 Minuten.
-        </div>
 
-        <div class="email-preview">
-          <div class="ep-row">
-            <span class="ep-label">AN</span>
-            <span class="ep-value bright">backoffice@5d-institut.de</span>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-vorname">Vorname *</label>
+            <input id="f-vorname" type="text" placeholder="Max" />
+            <span class="error-msg" id="err-vorname">Pflichtfeld</span>
           </div>
-          <div class="ep-row">
-            <span class="ep-label">BETREFF</span>
-            <span class="ep-value">Bewerbung Werkstudium – [Bereich] – [Dein Name]</span>
-          </div>
-          <div class="ep-row">
-            <span class="ep-label">ANHANG</span>
-            <span class="ep-value">Lebenslauf_[DeinName].pdf</span>
+          <div class="form-group">
+            <label for="f-nachname">Nachname *</label>
+            <input id="f-nachname" type="text" placeholder="Mustermann" />
+            <span class="error-msg" id="err-nachname">Pflichtfeld</span>
           </div>
         </div>
 
-        <a id="apply-mailto-btn" class="apply-btn-main" href="mailto:backoffice@5d-institut.de?subject=Bewerbung%20Werkstudium%20%E2%80%93%20%5BBereich%5D%20%E2%80%93%20%5BDein%20Name%5D&body=Bereich%3A%20%5BTechnology%20%2F%20Consulting%20%2F%20Training%5D%0A%0AName%3A%20%0AStudiengang%20%26%20Hochschule%3A%20%0ASemester%3A%20%0AVerf%C3%BCgbar%20ab%3A%20%0AStunden%2FWoche%3A%20%0A%0AWarum%205D%20Institut%3A%0A%0A%0ALinkedIn%2FGitHub%20(optional)%3A%20%0A%0A%5BLebenslauf%20als%20PDF%20bitte%20anh%C3%A4ngen%5D">
-          <span class="btn-icon">✉</span>
-          <span>Jetzt bewerben</span>
-        </a>
+        <div class="form-group">
+          <label for="f-email">E-Mail *</label>
+          <input id="f-email" type="email" placeholder="deine@mail.de" />
+          <span class="error-msg" id="err-email">Bitte eine gültige E-Mail eingeben</span>
+        </div>
+
+        <div class="form-group">
+          <label for="f-studium">Studiengang &amp; Hochschule *</label>
+          <input id="f-studium" type="text" placeholder="z.B. Bauingenieurwesen, THM Gießen" />
+          <span class="error-msg" id="err-studium">Pflichtfeld</span>
+        </div>
+
+        <div class="form-group">
+          <label for="f-bereich">Bereich *</label>
+          <select id="f-bereich">
+            <option value="" disabled selected>Welcher Bereich interessiert dich?</option>
+            <option value="Technology">💻 Technology – Automatisierung &amp; Software</option>
+            <option value="Consulting">🏗️ Consulting – BIM &amp; Digitale Beratung</option>
+            <option value="Training">🎓 Training – Schulung &amp; Wissenstransfer</option>
+            <option value="Open Application">✉️ Open Application – Überzeug mich selbst</option>
+          </select>
+          <span class="error-msg" id="err-bereich">Bitte einen Bereich auswählen</span>
+        </div>
+
+        <div class="form-group">
+          <label for="f-warum">Warum wir? *</label>
+          <textarea id="f-warum" placeholder="Ein paar Sätze reichen – was zieht dich zur Baubranche oder zu uns hin?"></textarea>
+          <span class="error-msg" id="err-warum">Pflichtfeld</span>
+        </div>
+
+        <div class="form-group">
+          <label for="f-linkedin">LinkedIn / GitHub / Portfolio</label>
+          <input id="f-linkedin" type="url" placeholder="https://..." />
+        </div>
+
+        <div class="form-group">
+          <label for="f-cv">Lebenslauf (PDF) *</label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="f-cv" accept=".pdf" onchange="handleFileChange(this)" />
+            <div class="file-upload-display" id="cv-display">
+              <span id="cv-label">Datei auswählen...</span>
+              <span class="file-upload-btn">PDF UPLOAD</span>
+            </div>
+          </div>
+          <span class="error-msg" id="err-cv">Bitte einen Lebenslauf hochladen (PDF)</span>
+        </div>
+
+        <button type="button" id="submit-btn" class="apply-btn-main" onclick="handleSubmit()">
+          <span class="btn-icon" id="btn-icon">✉</span>
+          <span id="btn-label">Jetzt bewerben</span>
+        </button>
 
         <p class="cta-footnote">
-          Öffnet Outlook · Empfänger, Betreff & Vorlage bereits ausgefüllt · Lebenslauf als PDF anhängen
+          Deine Daten werden nur intern verwendet · Datenschutz · backoffice@5d-institut.de
         </p>
+
       </div>
     </div>
   </div>
@@ -723,11 +813,119 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+  const WEBHOOK = 'https://n8n.5d-institut.de/webhook/e9c22492-a325-40b0-b500-d7605ea0f5d5';
   let selectedRole = '';
 
   function applyFor(role) {
     selectedRole = role;
+    if (document.getElementById('f-bereich')) {
+      const sel = document.getElementById('f-bereich');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === role) { sel.selectedIndex = i; break; }
+      }
+    }
     document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function handleFileChange(input) {
+    const display = document.getElementById('cv-display');
+    const label   = document.getElementById('cv-label');
+    if (input.files && input.files[0]) {
+      label.textContent = input.files[0].name;
+      display.classList.add('has-file');
+      document.getElementById('cv-display').style.borderColor = '';
+      document.getElementById('err-cv').classList.remove('show');
+    } else {
+      label.textContent = 'Datei auswählen...';
+      display.classList.remove('has-file');
+    }
+  }
+
+  function setError(fieldId, errId, show) {
+    const f = document.getElementById(fieldId);
+    const e = document.getElementById(errId);
+    if (show) { f && f.classList.add('field-error'); e && e.classList.add('show'); }
+    else { f && f.classList.remove('field-error'); e && e.classList.remove('show'); }
+  }
+
+  async function handleSubmit() {
+    const vorname  = document.getElementById('f-vorname').value.trim();
+    const nachname = document.getElementById('f-nachname').value.trim();
+    const email    = document.getElementById('f-email').value.trim();
+    const studium  = document.getElementById('f-studium').value.trim();
+    const bereich  = document.getElementById('f-bereich').value;
+    const warum    = document.getElementById('f-warum').value.trim();
+    const linkedin = document.getElementById('f-linkedin').value.trim();
+    const cvInput  = document.getElementById('f-cv');
+    const cvFile   = cvInput.files && cvInput.files[0] ? cvInput.files[0] : null;
+
+    let valid = true;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setError('f-vorname',  'err-vorname',  !vorname);          if (!vorname)   valid = false;
+    setError('f-nachname', 'err-nachname', !nachname);         if (!nachname)  valid = false;
+    setError('f-email',    'err-email',    !emailOk);          if (!emailOk)   valid = false;
+    setError('f-studium',  'err-studium',  !studium);          if (!studium)   valid = false;
+    setError('f-bereich',  'err-bereich',  !bereich);          if (!bereich)   valid = false;
+    setError('f-warum',    'err-warum',    !warum);            if (!warum)     valid = false;
+
+    // CV validation
+    if (!cvFile) {
+      document.getElementById('cv-display').style.borderColor = '#ff4466';
+      document.getElementById('err-cv').classList.add('show');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    const btn   = document.getElementById('submit-btn');
+    const icon  = document.getElementById('btn-icon');
+    const label = document.getElementById('btn-label');
+
+    btn.disabled = true;
+    icon.textContent = '⏳';
+    label.textContent = 'Wird gesendet...';
+
+    try {
+      // Send as multipart/form-data so n8n receives the PDF as binary
+      const formData = new FormData();
+      formData.append('vorname',  vorname);
+      formData.append('nachname', nachname);
+      formData.append('email',    email);
+      formData.append('studium',  studium);
+      formData.append('bereich',  bereich);
+      formData.append('warum',    warum);
+      formData.append('linkedin', linkedin);
+      formData.append('cv',       cvFile, cvFile.name);
+
+      const res = await fetch(WEBHOOK, {
+        method: 'POST',
+        body: formData
+        // No Content-Type header — browser sets it automatically with boundary
+      });
+
+      if (res.ok) {
+        icon.textContent = '✓';
+        label.textContent = 'Bewerbung abgeschickt!';
+        btn.style.background = 'var(--teal)';
+        btn.style.color = 'var(--black)';
+        btn.style.borderColor = 'var(--teal)';
+        document.getElementById('form-note').textContent = 'Wir melden uns innerhalb von 2 Wochen. Versprochen.';
+      } else {
+        throw new Error('Server error ' + res.status);
+      }
+    } catch (err) {
+      icon.textContent = '✕';
+      label.textContent = 'Fehler – bitte versuch es nochmal';
+      btn.style.background = '#ff4466';
+      btn.style.borderColor = '#ff4466';
+      setTimeout(() => {
+        icon.textContent = '✉';
+        label.textContent = 'Jetzt bewerben';
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.disabled = false;
+      }, 3000);
+    }
   }
 </script>
 </body>

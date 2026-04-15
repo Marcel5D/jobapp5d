@@ -237,14 +237,20 @@
 
   /* APPLY */
   .apply-section {
-    padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr;
-    gap: 100px; align-items: start; position: relative; overflow: hidden;
+    padding: 120px 60px;
+    position: relative; overflow: hidden;
   }
   .apply-section::before {
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 50% 70% at 0% 50%, rgba(157,3,50,0.12) 0%, transparent 60%);
     pointer-events: none;
   }
+
+  .apply-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: center; position: relative; z-index: 1;
+  }
+
   .apply-eyebrow {
     font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal);
     letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px;
@@ -267,60 +273,58 @@
   }
   .promise::before { content: '✓'; color: var(--teal); font-size: 14px; flex-shrink: 0; }
 
-  /* FORM */
-  .apply-form { display: flex; flex-direction: column; gap: 14px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  /* CTA BOX */
+  .apply-cta-box {
+    background: var(--gray); border: 1px solid var(--mid);
+    padding: 52px 48px; display: flex; flex-direction: column; gap: 32px;
+    position: relative; overflow: hidden;
   }
-  .apply-form input, .apply-form select, .apply-form textarea {
-    background: var(--gray); border: 1px solid var(--mid); color: var(--white);
-    font-family: 'Instrument Sans', sans-serif; font-size: 14px; padding: 14px 18px;
-    outline: none; width: 100%; transition: border-color 0.2s, background 0.2s;
-    cursor: none; -webkit-appearance: none;
-  }
-  .apply-form input::placeholder, .apply-form textarea::placeholder { color: rgba(248,244,240,0.2); }
-  .apply-form input:focus, .apply-form select:focus, .apply-form textarea:focus { border-color: var(--teal); background: var(--mid); }
-  .apply-form textarea { resize: none; height: 110px; }
-
-  /* File upload field */
-  .file-upload-wrapper { position: relative; }
-  .file-upload-wrapper input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: none; width: 100%; height: 100%;
-  }
-  .file-upload-display {
-    background: var(--gray); border: 1px dashed var(--mid); color: var(--muted);
-    font-family: 'Instrument Sans', sans-serif; font-size: 14px; padding: 14px 18px;
-    width: 100%; display: flex; align-items: center; justify-content: space-between;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .file-upload-wrapper:hover .file-upload-display { border-color: var(--teal); background: var(--mid); }
-  .file-upload-display.has-file { color: var(--white); border-style: solid; border-color: var(--teal); }
-  .file-upload-btn {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    background: var(--crimson); color: var(--white); padding: 5px 12px;
-    border: none; letter-spacing: 0.08em; flex-shrink: 0;
+  .apply-cta-box::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--crimson), var(--teal));
   }
 
-  /* Validation errors */
-  .field-error { border-color: #ff4466 !important; }
-  .error-msg {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    color: #ff4466; letter-spacing: 0.06em; margin-top: 4px; display: none;
+  .cta-instruction {
+    font-size: 14px; color: var(--muted); line-height: 1.75;
   }
-  .error-msg.show { display: block; }
+  .cta-instruction strong { color: var(--white); }
 
-  .submit-btn {
+  .email-preview {
+    background: var(--black); border: 1px solid var(--mid);
+    padding: 24px 28px; font-family: 'JetBrains Mono', monospace;
+  }
+  .email-preview .ep-row {
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 11px; padding: 6px 0; border-bottom: 1px solid rgba(61,26,34,0.6);
+  }
+  .email-preview .ep-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .email-preview .ep-label { color: var(--teal); letter-spacing: 0.1em; flex-shrink: 0; min-width: 72px; }
+  .email-preview .ep-value { color: var(--muted); }
+  .email-preview .ep-value.bright { color: var(--white); }
+
+  .apply-btn-main {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
     background: var(--crimson); color: var(--white);
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
-    padding: 18px 40px; border: 1px solid var(--crimson-light);
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    padding: 20px 40px; text-decoration: none; border: 1px solid var(--crimson-light);
     cursor: none; letter-spacing: 0.08em; text-transform: uppercase;
-    transition: transform 0.2s, background 0.2s, color 0.2s; width: 100%;
+    transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    position: relative; overflow: hidden;
   }
-  .submit-btn:hover { transform: translateY(-3px); background: var(--teal); color: var(--black); border-color: var(--teal); }
-  .form-note { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(248,244,240,0.25); text-align: center; letter-spacing: 0.06em; line-height: 1.6; }
+  .apply-btn-main::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--teal); transform: translateX(-101%);
+    transition: transform 0.3s ease;
+  }
+  .apply-btn-main:hover { color: var(--black); border-color: var(--teal); transform: translateY(-3px); }
+  .apply-btn-main:hover::before { transform: translateX(0); }
+  .apply-btn-main span { position: relative; z-index: 1; }
+  .apply-btn-main .btn-icon { font-size: 18px; position: relative; z-index: 1; }
+
+  .cta-footnote {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: rgba(248,244,240,0.2); text-align: center; letter-spacing: 0.06em; line-height: 1.6;
+  }
 
   /* FOOTER */
   footer {
@@ -352,8 +356,8 @@
     .hero { grid-template-columns: 1fr; padding: 60px 24px; } .hero-right { display: none; }
     .section { padding: 64px 24px; } .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .meme-grid, .perks-grid { grid-template-columns: 1fr; } .meme-tile { margin-top: 0 !important; }
-    .apply-section { grid-template-columns: 1fr; padding: 64px 24px; gap: 48px; }
-    .form-row { grid-template-columns: 1fr; }
+    .apply-section { padding: 64px 24px; }
+    .apply-inner { grid-template-columns: 1fr; gap: 48px; }
     .role-item { grid-template-columns: 48px 1fr; } .arr { display: none; }
     footer { grid-template-columns: 1fr; text-align: center; } .f-links { flex-wrap: wrap; justify-content: center; }
   }
@@ -630,87 +634,61 @@
 
 <!-- APPLY -->
 <section class="apply-section" id="apply">
-  <div class="reveal">
-    <div class="apply-eyebrow">05 - Bewirb dich jetzt</div>
-    <h2 class="apply-title">
-      DEINE<br>
-      <span class="hl">ERA</span><br>
-      STARTET<br>
-      <span class="cr">HIER.</span>
-    </h2>
-    <p class="apply-desc">
-      Kein Anschreiben notig. Kein Suit. Nur du und ein paar Satze warum du Bock hast.
-      <strong>We see you.</strong>
-    </p>
-    <div class="promises">
-      <div class="promise">Antwort innerhalb von 2 Wochen</div>
-      <div class="promise">Kein Ghosting. Versprochen.</div>
-      <div class="promise">Kein Assessment Center BS</div>
-      <div class="promise">Einstieg jederzeit moglich</div>
-      <div class="promise">Wenn es passt, bleibst du gern</div>
+  <div class="apply-inner">
+    <div class="reveal">
+      <div class="apply-eyebrow">05 - Bewirb dich jetzt</div>
+      <h2 class="apply-title">
+        DEINE<br>
+        <span class="hl">ERA</span><br>
+        STARTET<br>
+        <span class="cr">HIER.</span>
+      </h2>
+      <p class="apply-desc">
+        Kein Anschreiben notig. Kein Suit. Nur du und ein paar Satze warum du Bock hast.
+        <strong>We see you.</strong>
+      </p>
+      <div class="promises">
+        <div class="promise">Antwort innerhalb von 2 Wochen</div>
+        <div class="promise">Kein Ghosting. Versprochen.</div>
+        <div class="promise">Kein Assessment Center BS</div>
+        <div class="promise">Einstieg jederzeit moglich</div>
+        <div class="promise">Wenn es passt, bleibst du gern</div>
+      </div>
     </div>
-  </div>
 
-  <div class="apply-form reveal d2">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Vorname *</label>
-        <input id="f-vorname" type="text" placeholder="Max" />
-        <span class="error-msg" id="err-vorname">Pflichtfeld</span>
-      </div>
-      <div class="form-group">
-        <label>Nachname *</label>
-        <input id="f-nachname" type="text" placeholder="Mustermann" />
-        <span class="error-msg" id="err-nachname">Pflichtfeld</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>E-Mail *</label>
-      <input id="f-email" type="email" placeholder="deine@mail.de" />
-      <span class="error-msg" id="err-email">Bitte eine gultige E-Mail eingeben</span>
-    </div>
-    <div class="form-group">
-      <label>Studiengang und Hochschule *</label>
-      <input id="f-studium" type="text" placeholder="z.B. Bauingenieurwesen, THM Giessen" />
-      <span class="error-msg" id="err-studium">Pflichtfeld</span>
-    </div>
-    <div class="form-group">
-      <label>Bereich *</label>
-      <select id="role-select">
-        <option value="" disabled selected>Welcher Bereich interessiert dich?</option>
-        <option value="Technology">💻 Technology - Automatisierung und Software</option>
-        <option value="Consulting">🏗️ Consulting - BIM und Digitale Beratung</option>
-        <option value="Training">🎓 Training - Schulung und Wissenstransfer</option>
-        <option value="Offen">Uberzeug mich selbst - Open Application</option>
-      </select>
-      <span class="error-msg" id="err-bereich">Bitte einen Bereich auswahlen</span>
-    </div>
-    <div class="form-group">
-      <label>Warum wir? (ein paar Satze reichen) *</label>
-      <textarea id="f-warum" placeholder="Was zieht dich zur Baubranche oder zu uns an..."></textarea>
-      <span class="error-msg" id="err-warum">Pflichtfeld</span>
-    </div>
-    <div class="form-group">
-      <label>Lebenslauf (PDF) *</label>
-      <div class="file-upload-wrapper">
-        <input type="file" id="f-cv" accept=".pdf" onchange="handleFileChange(this)" />
-        <div class="file-upload-display" id="cv-display">
-          <span id="cv-label">Datei auswahlen...</span>
-          <span class="file-upload-btn">PDF UPLOAD</span>
+    <div class="reveal d2">
+      <div class="apply-cta-box">
+        <div class="cta-instruction">
+          Ein Klick – und dein Mail-Client öffnet sich mit allem vorausgefüllt.
+          Füll die markierten Felder aus, häng deinen <strong>Lebenslauf als PDF</strong> an
+          und schick ab. Dauert 2 Minuten.
         </div>
+
+        <div class="email-preview">
+          <div class="ep-row">
+            <span class="ep-label">AN</span>
+            <span class="ep-value bright">backoffice@5d-institut.de</span>
+          </div>
+          <div class="ep-row">
+            <span class="ep-label">BETREFF</span>
+            <span class="ep-value">Bewerbung Werkstudium – [Bereich] – [Dein Name]</span>
+          </div>
+          <div class="ep-row">
+            <span class="ep-label">ANHANG</span>
+            <span class="ep-value">Lebenslauf_[DeinName].pdf</span>
+          </div>
+        </div>
+
+        <a id="apply-mailto-btn" href="#" class="apply-btn-main" onclick="openMailto(event)">
+          <span class="btn-icon">✉</span>
+          <span>Jetzt bewerben</span>
+        </a>
+
+        <p class="cta-footnote">
+          Öffnet Outlook · Empfänger & Vorlage bereits ausgefüllt · Lebenslauf als Anhang nicht vergessen
+        </p>
       </div>
-      <span class="error-msg" id="err-cv">Bitte einen Lebenslauf hochladen (PDF)</span>
     </div>
-    <div class="form-group">
-      <label>LinkedIn / Portfolio / GitHub</label>
-      <input type="url" placeholder="https://..." />
-    </div>
-    <button type="button" class="submit-btn" id="submit-btn" onclick="handleSubmit(this)">
-      BEWERBEN - dauert 2 Minuten
-    </button>
-    <p class="form-note">
-      Deine Daten werden nur intern verwendet - Datenschutz - backoffice@5d-institut.de
-    </p>
   </div>
 </section>
 
@@ -745,112 +723,57 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Click role -> scroll to apply + autofill dropdown
+  // Tracks which role was clicked (optional, used for subject line)
+  let selectedRole = '';
+
+  // Click role -> scroll to apply + track selection
   function applyFor(role) {
-    const sel = document.getElementById('role-select');
-    for (let i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === role) { sel.selectedIndex = i; break; }
-    }
+    selectedRole = role;
     document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // File upload display
-  function handleFileChange(input) {
-    const display = document.getElementById('cv-display');
-    const label = document.getElementById('cv-label');
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      label.textContent = file.name;
-      display.classList.add('has-file');
-    } else {
-      label.textContent = 'Datei auswahlen...';
-      display.classList.remove('has-file');
-    }
-  }
+  // Build and open mailto
+  function openMailto(e) {
+    e.preventDefault();
 
-  // Validation helpers
-  function showError(fieldId, errId, show) {
-    const field = document.getElementById(fieldId);
-    const err = document.getElementById(errId);
-    if (show) {
-      field && field.classList.add('field-error');
-      err && err.classList.add('show');
-    } else {
-      field && field.classList.remove('field-error');
-      err && err.classList.remove('show');
-    }
-  }
+    const roleLabel = selectedRole
+      ? selectedRole
+      : '[Technology / Consulting / Training]';
 
-  // Form submission with validation
-  function handleSubmit(btn) {
-    let valid = true;
-
-    // Vorname
-    const vorname = document.getElementById('f-vorname').value.trim();
-    showError('f-vorname', 'err-vorname', !vorname);
-    if (!vorname) valid = false;
-
-    // Nachname
-    const nachname = document.getElementById('f-nachname').value.trim();
-    showError('f-nachname', 'err-nachname', !nachname);
-    if (!nachname) valid = false;
-
-    // Email
-    const email = document.getElementById('f-email').value.trim();
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    showError('f-email', 'err-email', !emailOk);
-    if (!emailOk) valid = false;
-
-    // Studiengang
-    const studium = document.getElementById('f-studium').value.trim();
-    showError('f-studium', 'err-studium', !studium);
-    if (!studium) valid = false;
-
-    // Bereich
-    const bereich = document.getElementById('role-select').value;
-    const bereichOk = bereich && bereich !== '';
-    showError('role-select', 'err-bereich', !bereichOk);
-    if (!bereichOk) valid = false;
-
-    // Warum wir
-    const warum = document.getElementById('f-warum').value.trim();
-    showError('f-warum', 'err-warum', !warum);
-    if (!warum) valid = false;
-
-    // CV PDF
-    const cvInput = document.getElementById('f-cv');
-    const cvOk = cvInput.files && cvInput.files.length > 0;
-    const cvDisplay = document.getElementById('cv-display');
-    const cvErr = document.getElementById('err-cv');
-    if (!cvOk) {
-      cvDisplay.style.borderColor = '#ff4466';
-      cvErr.classList.add('show');
-      valid = false;
-    } else {
-      cvDisplay.style.borderColor = '';
-      cvErr.classList.remove('show');
-    }
-
-    if (!valid) return;
-
-    // Build mailto link as fallback (real backend would use fetch/FormData)
-    const subject = encodeURIComponent('Bewerbung Werkstudium - ' + bereich + ' - ' + vorname + ' ' + nachname);
-    const body = encodeURIComponent(
-      'Vorname: ' + vorname + '\n' +
-      'Nachname: ' + nachname + '\n' +
-      'E-Mail: ' + email + '\n' +
-      'Studiengang/Hochschule: ' + studium + '\n' +
-      'Bereich: ' + bereich + '\n\n' +
-      'Warum 5D Institut:\n' + warum + '\n\n' +
-      '(Lebenslauf bitte als Anhang beifugen)'
+    const subject = encodeURIComponent(
+      'Bewerbung Werkstudium – ' + roleLabel + ' – [Dein Name]'
     );
-    window.location.href = 'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
 
-    btn.textContent = 'Gesendet! Wir melden uns innerhalb von 2 Wochen.';
-    btn.style.background = '#3FD9CB';
-    btn.style.color = '#0D0608';
-    btn.style.borderColor = '#3FD9CB';
-    btn.disabled = true;
+    const body = encodeURIComponent(
+`Hallo liebes 5D-Team,
+
+ich bewerbe mich hiermit als Werkstudent:in im Bereich: [Technology / Consulting / Training]
+
+--- ÜBER MICH ---
+Name:              [Vor- und Nachname]
+Studiengang:       [z.B. Bauingenieurwesen, Informatik, ...]
+Hochschule:        [z.B. THM Gießen]
+Aktuelles Semester:[z.B. 4. Semester]
+
+--- WARUM 5D INSTITUT? ---
+[Ein paar ehrliche Sätze – was zieht dich zur Baubranche oder zu uns hin?]
+
+--- VERFÜGBARKEIT ---
+Stunden/Woche:     [z.B. 20h]
+Ab wann:           [z.B. sofort / ab Mai 2026]
+Präferenz:         [Vor Ort Gießen / Remote / Hybrid]
+
+--- LINKS (optional) ---
+LinkedIn / GitHub / Portfolio: [URL oder "–"]
+
+Meinen Lebenslauf habe ich als PDF angehängt.
+
+Viele Grüße,
+[Dein Name]`
+    );
+
+    window.location.href =
+      'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
   }
 </script>
 </body>

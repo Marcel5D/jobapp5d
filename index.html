@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jobs – 5D Institut</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --crimson: #9D0332;
@@ -25,7 +25,7 @@
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'Instrument Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
     cursor: none;
   }
@@ -52,7 +52,7 @@
   }
   .ticker-track { display: inline-block; animation: ticker 22s linear infinite; }
   .ticker-track span {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
     color: rgba(248,244,240,0.85); letter-spacing: 0.12em; padding: 0 36px;
   }
   .ticker-track span.acc { color: var(--teal); font-weight: 700; }
@@ -66,7 +66,7 @@
   .logo-svg { height: 34px; width: auto; }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
     text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase;
     transition: color 0.2s; cursor: none;
   }
@@ -89,7 +89,7 @@
   }
 
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--teal);
     letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 28px;
     opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
     display: flex; align-items: center; gap: 12px;
@@ -97,7 +97,7 @@
   .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--teal); }
 
   .hero-title {
-    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-family: 'Outfit', sans-serif; font-weight: 800;
     font-size: clamp(58px, 6.5vw, 96px); line-height: 0.95;
     letter-spacing: -0.03em; margin-bottom: 36px;
     opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
@@ -114,14 +114,14 @@
   .hero-btns { display: flex; gap: 16px; opacity: 0; animation: fadeUp 0.7s 0.65s forwards; }
   .btn-p {
     display: inline-flex; align-items: center; gap: 10px; background: var(--crimson); color: var(--white);
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700;
     padding: 15px 32px; text-decoration: none; border: 1px solid var(--crimson-light);
     cursor: none; letter-spacing: 0.05em; transition: transform 0.2s, background 0.2s;
   }
   .btn-p:hover { transform: translate(-3px,-3px); background: var(--crimson-light); }
   .btn-g {
     display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white);
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    font-family: 'DM Mono', monospace; font-size: 13px;
     padding: 15px 32px; text-decoration: none; border: 1px solid var(--mid);
     cursor: none; letter-spacing: 0.05em; transition: border-color 0.2s, color 0.2s;
   }
@@ -138,14 +138,14 @@
   .meme-topbar { background: var(--mid); padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
   .dot { width: 10px; height: 10px; border-radius: 50%; }
   .dot:nth-child(1) { background: #FF5F57; } .dot:nth-child(2) { background: #FEBC2E; } .dot:nth-child(3) { background: #28C840; }
-  .meme-topbar span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; letter-spacing: 0.1em; }
+  .meme-topbar span { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-left: auto; letter-spacing: 0.1em; }
   .meme-body { padding: 32px; }
-  .meme-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.15em; margin-bottom: 20px; }
+  .meme-lbl { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.15em; margin-bottom: 20px; }
   .meme-cmp { display: flex; flex-direction: column; }
   .mc { padding: 20px; border: 1px solid var(--mid); }
   .mc + .mc { border-top: none; }
-  .mc .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 10px; display: block; }
-  .mc .ct { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
+  .mc .tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 10px; display: block; }
+  .mc .ct { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
   .mc.theirs .ct { color: var(--muted); }
   .mc.ours { border-color: var(--crimson); background: rgba(157,3,50,0.1); }
   .mc.ours .ct { color: var(--teal); }
@@ -155,11 +155,11 @@
   .section { padding: 100px 60px; border-bottom: 1px solid var(--mid); }
   .sec-label { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; }
   .sec-label .num {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal);
+    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal);
     letter-spacing: 0.2em; border: 1px solid var(--teal-dim); padding: 4px 10px;
   }
   .sec-label h2 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-family: 'Outfit', sans-serif; font-weight: 800;
     font-size: clamp(32px, 3.5vw, 48px); letter-spacing: -0.02em; line-height: 1;
   }
   .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--mid); }
@@ -170,7 +170,7 @@
   .about-text p strong { color: var(--white); }
   .pill {
     display: inline-block; background: rgba(157,3,50,0.2); border: 1px solid var(--crimson);
-    color: var(--teal); font-family: 'JetBrains Mono', monospace;
+    color: var(--teal); font-family: 'DM Mono', monospace;
     font-size: 10px; padding: 5px 14px; letter-spacing: 0.1em; margin-top: 8px;
   }
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
@@ -180,10 +180,10 @@
   }
   .stat-box:hover { border-color: var(--crimson); }
   .stat-box .big {
-    font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800;
+    font-family: 'Outfit', sans-serif; font-size: 52px; font-weight: 800;
     color: var(--teal); line-height: 1; margin-bottom: 8px; letter-spacing: -0.03em;
   }
-  .stat-box p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .stat-box p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
 
   /* ROLES */
   .role-list { display: flex; flex-direction: column; gap: 2px; }
@@ -196,9 +196,9 @@
   .role-item:hover { background: var(--mid); border-color: var(--crimson); }
   .role-item:hover .arr { transform: translateX(6px); color: var(--teal); }
   .r-emoji { font-size: 26px; padding-top: 4px; }
-  .r-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+  .r-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
   .r-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
-  .r-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+  .r-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
   .arr { font-size: 22px; color: #444; transition: transform 0.2s, color 0.2s; padding-top: 4px; }
 
   /* MEMES */
@@ -212,10 +212,10 @@
     padding: 28px 24px; text-align: center; min-height: 160px;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
   }
-  .meme-screen .setup { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
-  .meme-screen .punch { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--teal); line-height: 1.2; }
+  .meme-screen .setup { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .meme-screen .punch { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--teal); line-height: 1.2; }
   .meme-screen .em { font-size: 36px; line-height: 1; }
-  .meme-ft { padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+  .meme-ft { padding: 14px 20px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
 
   /* PERKS */
   .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
@@ -231,9 +231,9 @@
   .perk:hover { background: var(--mid); }
   .perk:hover::before { transform: scaleX(1); }
   .perk-icon { font-size: 32px; margin-bottom: 18px; display: block; }
-  .perk h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+  .perk h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
   .perk p { font-size: 13px; color: var(--muted); line-height: 1.7; }
-  .perk .vibe { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); margin-top: 14px; letter-spacing: 0.1em; }
+  .perk .vibe { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); margin-top: 14px; letter-spacing: 0.1em; }
 
   /* APPLY */
   .apply-section {
@@ -252,13 +252,13 @@
   }
 
   .apply-eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal);
+    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal);
     letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px;
     display: flex; align-items: center; gap: 12px;
   }
   .apply-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
   .apply-title {
-    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-family: 'Outfit', sans-serif; font-weight: 800;
     font-size: clamp(48px, 5vw, 72px); line-height: 0.95;
     letter-spacing: -0.03em; margin-bottom: 28px;
   }
@@ -269,7 +269,7 @@
   .promise {
     display: flex; align-items: center; gap: 12px;
     font-size: 13px; color: var(--muted);
-    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
+    font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
   }
   .promise::before { content: '✓'; color: var(--teal); font-size: 14px; flex-shrink: 0; }
 
@@ -291,7 +291,7 @@
 
   .email-preview {
     background: var(--black); border: 1px solid var(--mid);
-    padding: 24px 28px; font-family: 'JetBrains Mono', monospace;
+    padding: 24px 28px; font-family: 'DM Mono', monospace;
   }
   .email-preview .ep-row {
     display: flex; gap: 12px; align-items: baseline;
@@ -305,7 +305,7 @@
   .apply-btn-main {
     display: flex; align-items: center; justify-content: center; gap: 14px;
     background: var(--crimson); color: var(--white);
-    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 700;
     padding: 20px 40px; text-decoration: none; border: 1px solid var(--crimson-light);
     cursor: none; letter-spacing: 0.08em; text-transform: uppercase;
     transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
@@ -322,7 +322,7 @@
   .apply-btn-main .btn-icon { font-size: 18px; position: relative; z-index: 1; }
 
   .cta-footnote {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
     color: rgba(248,244,240,0.2); text-align: center; letter-spacing: 0.06em; line-height: 1.6;
   }
 
@@ -334,11 +334,11 @@
   .f-logo { height: 26px; width: auto; }
   .f-links { display: flex; gap: 28px; justify-content: center; }
   .f-links a {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
     text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; cursor: none;
   }
   .f-links a:hover { color: var(--teal); }
-  .f-email { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.06em; }
+  .f-email { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.06em; }
 
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
@@ -679,7 +679,7 @@
           </div>
         </div>
 
-        <a id="apply-mailto-btn" href="#" class="apply-btn-main" onclick="handleApply(event)">
+        <a id="apply-mailto-btn" class="apply-btn-main" href="mailto:backoffice@5d-institut.de?subject=Bewerbung%20Werkstudium%20%E2%80%93%20%5BBereich%5D%20%E2%80%93%20%5BDein%20Name%5D&body=Bereich%3A%20%5BTechnology%20%2F%20Consulting%20%2F%20Training%5D%0A%0AName%3A%20%0AStudiengang%20%26%20Hochschule%3A%20%0ASemester%3A%20%0AVerf%C3%BCgbar%20ab%3A%20%0AStunden%2FWoche%3A%20%0A%0AWarum%205D%20Institut%3A%0A%0A%0ALinkedIn%2FGitHub%20(optional)%3A%20%0A%0A%5BLebenslauf%20als%20PDF%20bitte%20anh%C3%A4ngen%5D">
           <span class="btn-icon">✉</span>
           <span>Jetzt bewerben</span>
         </a>
@@ -728,24 +728,6 @@
   function applyFor(role) {
     selectedRole = role;
     document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function handleApply(e) {
-    e.preventDefault();
-    const role = selectedRole || '[Technology / Consulting / Training]';
-    const subject = encodeURIComponent('Bewerbung Werkstudium - ' + role + ' - [Name]');
-    const body = encodeURIComponent(
-      'Bereich: ' + role + '\n\n' +
-      'Name: \n' +
-      'Studiengang & Hochschule: \n' +
-      'Semester: \n' +
-      'Verfuegbar ab: \n' +
-      'Stunden/Woche: \n\n' +
-      'Warum 5D Institut:\n\n\n' +
-      'LinkedIn/GitHub (optional): \n\n' +
-      '[Lebenslauf als PDF bitte anhaengen]'
-    );
-    window.location.href = 'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
   }
 </script>
 </body>

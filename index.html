@@ -679,13 +679,13 @@
           </div>
         </div>
 
-        <a id="apply-mailto-btn" href="#" class="apply-btn-main" onclick="openMailto(event)">
+        <a id="apply-mailto-btn" href="#" class="apply-btn-main" onclick="handleApply(event)">
           <span class="btn-icon">✉</span>
           <span>Jetzt bewerben</span>
         </a>
 
         <p class="cta-footnote">
-          Öffnet Outlook · Empfänger & Vorlage bereits ausgefüllt · Lebenslauf als Anhang nicht vergessen
+          Öffnet Outlook · Empfänger, Betreff & Vorlage bereits ausgefüllt · Lebenslauf als PDF anhängen
         </p>
       </div>
     </div>
@@ -723,57 +723,29 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Tracks which role was clicked (optional, used for subject line)
   let selectedRole = '';
 
-  // Click role -> scroll to apply + track selection
   function applyFor(role) {
     selectedRole = role;
     document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Build and open mailto
-  function openMailto(e) {
+  function handleApply(e) {
     e.preventDefault();
-
-    const roleLabel = selectedRole
-      ? selectedRole
-      : '[Technology / Consulting / Training]';
-
-    const subject = encodeURIComponent(
-      'Bewerbung Werkstudium – ' + roleLabel + ' – [Dein Name]'
-    );
-
+    const role = selectedRole || '[Technology / Consulting / Training]';
+    const subject = encodeURIComponent('Bewerbung Werkstudium - ' + role + ' - [Name]');
     const body = encodeURIComponent(
-`Hallo liebes 5D-Team,
-
-ich bewerbe mich hiermit als Werkstudent:in im Bereich: [Technology / Consulting / Training]
-
---- ÜBER MICH ---
-Name:              [Vor- und Nachname]
-Studiengang:       [z.B. Bauingenieurwesen, Informatik, ...]
-Hochschule:        [z.B. THM Gießen]
-Aktuelles Semester:[z.B. 4. Semester]
-
---- WARUM 5D INSTITUT? ---
-[Ein paar ehrliche Sätze – was zieht dich zur Baubranche oder zu uns hin?]
-
---- VERFÜGBARKEIT ---
-Stunden/Woche:     [z.B. 20h]
-Ab wann:           [z.B. sofort / ab Mai 2026]
-Präferenz:         [Vor Ort Gießen / Remote / Hybrid]
-
---- LINKS (optional) ---
-LinkedIn / GitHub / Portfolio: [URL oder "–"]
-
-Meinen Lebenslauf habe ich als PDF angehängt.
-
-Viele Grüße,
-[Dein Name]`
+      'Bereich: ' + role + '\n\n' +
+      'Name: \n' +
+      'Studiengang & Hochschule: \n' +
+      'Semester: \n' +
+      'Verfuegbar ab: \n' +
+      'Stunden/Woche: \n\n' +
+      'Warum 5D Institut:\n\n\n' +
+      'LinkedIn/GitHub (optional): \n\n' +
+      '[Lebenslauf als PDF bitte anhaengen]'
     );
-
-    window.location.href =
-      'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:backoffice@5d-institut.de?subject=' + subject + '&body=' + body;
   }
 </script>
 </body>
